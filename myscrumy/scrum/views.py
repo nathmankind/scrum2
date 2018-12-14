@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User, Group
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.contrib import messages
 from .models import *
@@ -158,6 +158,25 @@ def move_goal(request, goal_id, to_id):
 class ScrumUserViewset(viewsets.ModelViewSet):
     queryset = ScrumUser.objects.all()
     serializer_class = ScrumUserSerializer
+
+    def create(self, request):
+        password = request.data['password']
+        rtpassword = request.data['rtpassword']
+        if password != rtpassword:
+            return JsonResponse({'message': 'Error: Password Do Not Match'})
+        user, created = User.objects.get_or_create(username=request.data['username'])
+        if created:
+            user.set_password(password)
+            group = Group.objects.get(name=request.data['usertype'])
+            group.user_set.add(user)
+            user.save()
+            scrum_user = ScrumUser(user=user,
+                                   nickname=request.data['full_name'],
+                                   age=request.data['age'])
+            scrum_user.save()
+            return JsonResponse({'message': 'User created successfully'})
+        else:
+            return JsonResponse({'message': 'Error: Username already exist'})
 
 
 class ScrumGoalViewset(viewsets.ModelViewSet):
