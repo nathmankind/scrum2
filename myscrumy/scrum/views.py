@@ -178,6 +178,14 @@ class ScrumUserViewset(viewsets.ModelViewSet):
         else:
             return JsonResponse({'message': 'Error: Username already exist'})
 
+def filtered_users():
+    users = ScrumUserSerializer(ScrumUser.objects.all(), many=True).data
+
+    for user in users:
+        user['scrumgoal_set'] = [x for x in user['scrumgoal_set'] if x['visible'] == True]
+
+    return users
+
 
 class ScrumGoalViewset(viewsets.ModelViewSet):
     queryset = ScrumGoal.objects.all()
@@ -187,3 +195,15 @@ class ScrumGoalViewset(viewsets.ModelViewSet):
 class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def create(self, request):
+        username = request.data['username']
+        password = request.data['password']
+
+        login_user = authenticate(request, username=username, password=password)
+        if login_user is not None:
+            return JsonResponse({'exit': 0, 'message': 'Welcome', 'role': login_user.groups.all()[0].name,
+                                 'data': filtered_users()})
+        else:
+            messages.error(request, 'Error: invalid username or password')
+            return HttpResponseRedirect(reverse('login'))

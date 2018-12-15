@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1d2ffd0-e048-4fca-a02f-130b87ca41b7" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/myscrumy/myscrumy/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myscrumy/myscrumy/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/makinde.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myscrumy/scrum/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myscrumy/scrum/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,14 +26,14 @@
         <counts>
           <entry key="dummy" value="1" />
           <entry key="html" value="2056" />
-          <entry key="py" value="4362" />
+          <entry key="py" value="4644" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="2056" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="4362" />
+          <entry key="Python" value="4644" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -50,11 +52,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myscrumy/myscrumy/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+            <state relative-caret-position="400">
+              <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
@@ -83,17 +85,19 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myscrumy/scrum/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="80" column="19" lean-forward="true" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+            <state relative-caret-position="170">
+              <caret line="134" column="27" selection-start-line="134" selection-start-column="27" selection-end-line="134" selection-end-column="27" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1544778864892" expanded="true" signature="1532:1537" ph="..." />
-                <marker date="1544778864892" expanded="true" signature="2771:2776" ph="..." />
-                <marker date="1544778864892" expanded="true" signature="2975:2980" ph="..." />
-                <marker date="1544778864892" expanded="true" signature="3070:3075" ph="..." />
-                <marker date="1544778864892" expanded="true" signature="3770:3775" ph="..." />
-                <marker date="1544778864892" expanded="true" signature="4472:4477" ph="..." />
-                <marker date="1544778864892" expanded="true" signature="6034:7249" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="1532:1537" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="2771:2776" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="2975:2980" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="3070:3075" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="3770:3775" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="4472:4477" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="6034:8029" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="7024:7233" ph="..." />
+                <marker date="1544804851946" expanded="true" signature="7509:7518" ph="..." />
               </folding>
             </state>
           </provider>
@@ -111,11 +115,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/myscrumy/scrum/templates/profile.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="537">
-              <caret line="45" column="78" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="78" />
+            <state relative-caret-position="280">
+              <caret line="36" column="26" lean-forward="true" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#h3#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
@@ -127,8 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/myscrumy/scrum/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="426">
-              <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+            <state relative-caret-position="180">
+              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
                 <marker date="1544776747963" expanded="true" signature="772:777" ph="..." />
@@ -190,16 +194,16 @@
         <option value="$PROJECT_DIR$/myscrumy/scrum/urls.py" />
         <option value="$PROJECT_DIR$/myscrumy/scrum/serializers.py" />
         <option value="$PROJECT_DIR$/myscrumy/scrum/models.py" />
-        <option value="$PROJECT_DIR$/myscrumy/scrum/views.py" />
         <option value="$PROJECT_DIR$/myscrumy/myscrumy/settings.py" />
+        <option value="$PROJECT_DIR$/myscrumy/scrum/views.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="364" />
-    <option name="y" value="24" />
-    <option name="width" value="971" />
-    <option name="height" value="728" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="451" />
+    <option name="y" value="125" />
+    <option name="width" value="952" />
+    <option name="height" value="632" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -283,10 +287,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="364" y="24" width="971" height="728" extended-state="0" />
+    <frame x="451" y="125" width="952" height="632" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15326902" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15317287" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -347,17 +351,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myscrumy/scrum/templates/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="537">
-          <caret line="45" column="78" selection-start-line="45" selection-start-column="78" selection-end-line="45" selection-end-column="78" />
-          <folding>
-            <element signature="n#style#0;n#h3#2;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/myscrumy/scrum/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
@@ -378,10 +371,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/myscrumy/myscrumy/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="43" lean-forward="true" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/myscrumy/scrum/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="180">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
             <marker date="1544776747963" expanded="true" signature="772:777" ph="..." />
@@ -391,25 +391,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/myscrumy/scrum/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="80" column="19" lean-forward="true" selection-start-line="80" selection-start-column="19" selection-end-line="80" selection-end-column="19" />
+        <state relative-caret-position="170">
+          <caret line="134" column="27" selection-start-line="134" selection-start-column="27" selection-end-line="134" selection-end-column="27" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1544778864892" expanded="true" signature="1532:1537" ph="..." />
-            <marker date="1544778864892" expanded="true" signature="2771:2776" ph="..." />
-            <marker date="1544778864892" expanded="true" signature="2975:2980" ph="..." />
-            <marker date="1544778864892" expanded="true" signature="3070:3075" ph="..." />
-            <marker date="1544778864892" expanded="true" signature="3770:3775" ph="..." />
-            <marker date="1544778864892" expanded="true" signature="4472:4477" ph="..." />
-            <marker date="1544778864892" expanded="true" signature="6034:7249" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="1532:1537" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="2771:2776" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="2975:2980" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="3070:3075" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="3770:3775" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="4472:4477" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="6034:8029" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="7024:7233" ph="..." />
+            <marker date="1544804851946" expanded="true" signature="7509:7518" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/myscrumy/myscrumy/settings.py">
+    <entry file="file://$PROJECT_DIR$/myscrumy/scrum/templates/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="46" column="19" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state relative-caret-position="280">
+          <caret line="36" column="26" lean-forward="true" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
+          <folding>
+            <element signature="n#style#0;n#h3#2;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
