@@ -191,6 +191,27 @@ class ScrumGoalViewset(viewsets.ModelViewSet):
     queryset = ScrumGoal.objects.all()
     serializer_class = ScrumGoalSerializer
 
+    def create(self, request):
+        user = authenticate(request, username=request.data['username'],
+                            password=request.data['password'])
+        if user is not None:
+            name_goal = request.data['username']
+            group_name = user.groups.all()[0].name
+            status_start = 0
+            if group_name == 'Admin':
+                status_start = 1
+            elif group_name == 'Quality Analyst':
+                status_start = 2
+            goal = ScrumGoal(user=user.scrumuser, name=name_goal, status=status_start)
+            goal.save()
+            return JsonResponse({'exit': 0,
+                                 'message': 'Not logged in! Please login first'})
+
+        else:
+            return JsonResponse({'exit': 1,
+                                 'message': 'Goal Added successfully',
+                                 'data': filtered_users()})
+
 
 class UserViewset(viewsets.ModelViewSet):
     queryset = User.objects.all()
