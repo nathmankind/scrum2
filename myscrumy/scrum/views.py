@@ -195,7 +195,7 @@ class ScrumGoalViewset(viewsets.ModelViewSet):
         user = authenticate(request, username=request.data['username'],
                             password=request.data['password'])
         if user is not None:
-            name_goal = request.data['username']
+            name_goal = request.data['name']
             group_name = user.groups.all()[0].name
             status_start = 0
             if group_name == 'Admin':
@@ -205,12 +205,11 @@ class ScrumGoalViewset(viewsets.ModelViewSet):
             goal = ScrumGoal(user=user.scrumuser, name=name_goal, status=status_start)
             goal.save()
             return JsonResponse({'exit': 0,
-                                 'message': 'Not logged in! Please login first'})
-
-        else:
-            return JsonResponse({'exit': 1,
                                  'message': 'Goal Added successfully',
                                  'data': filtered_users()})
+        else:
+            return JsonResponse({'exit': 1,
+                                 'message': 'Not logged in! Please login first'})
 
 
 class UserViewset(viewsets.ModelViewSet):

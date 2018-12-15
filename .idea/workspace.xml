@@ -24,14 +24,14 @@
         <counts>
           <entry key="dummy" value="1" />
           <entry key="html" value="2056" />
-          <entry key="py" value="4837" />
+          <entry key="py" value="4844" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="2056" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="4837" />
+          <entry key="Python" value="4844" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -84,18 +84,18 @@
         <entry file="file://$PROJECT_DIR$/myscrumy/scrum/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
-              <caret line="207" column="34" lean-forward="true" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
+              <caret line="210" column="43" lean-forward="true" selection-start-line="210" selection-start-column="43" selection-end-line="210" selection-end-column="43" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1544868416272" expanded="true" signature="1532:1537" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="2771:2776" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="2975:2980" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="3070:3075" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="3770:3775" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="4472:4477" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="6034:8935" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="7024:7233" ph="..." />
-                <marker date="1544868416272" expanded="true" signature="8415:8424" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="1532:1537" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="2771:2776" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="2975:2980" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="3070:3075" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="3770:3775" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="4472:4477" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="6034:8930" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="7024:7233" ph="..." />
+                <marker date="1544869747539" expanded="true" signature="8410:8419" ph="..." />
               </folding>
             </state>
           </provider>
@@ -198,9 +198,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="627" />
+    <option name="x" value="402" />
     <option name="y" value="125" />
-    <option name="width" value="776" />
+    <option name="width" value="1001" />
     <option name="height" value="632" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -285,7 +285,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="627" y="125" width="776" height="632" extended-state="0" />
+    <frame x="402" y="125" width="1001" height="632" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.1897019" />
@@ -401,18 +401,18 @@
     <entry file="file://$PROJECT_DIR$/myscrumy/scrum/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
-          <caret line="207" column="34" lean-forward="true" selection-start-line="207" selection-start-column="34" selection-end-line="207" selection-end-column="34" />
+          <caret line="210" column="43" lean-forward="true" selection-start-line="210" selection-start-column="43" selection-end-line="210" selection-end-column="43" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1544868416272" expanded="true" signature="1532:1537" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="2771:2776" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="2975:2980" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="3070:3075" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="3770:3775" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="4472:4477" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="6034:8935" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="7024:7233" ph="..." />
-            <marker date="1544868416272" expanded="true" signature="8415:8424" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="1532:1537" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="2771:2776" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="2975:2980" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="3070:3075" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="3770:3775" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="4472:4477" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="6034:8930" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="7024:7233" ph="..." />
+            <marker date="1544869747539" expanded="true" signature="8410:8419" ph="..." />
           </folding>
         </state>
       </provider>
