@@ -20,7 +20,7 @@ def init_user(request):
     if password != rtpassword:
         messages.error(request, 'Error: Password does not match.')
         return HttpResponseRedirect(reverse('scrum:create_user'))
-    user, created = User.objects.get_or_create(username = request.POST.get('username', None))
+    user, created = User.objects.get_or_create(username=request.POST.get('username', None))
     if created:
         user.set_password(password)
         group = Group.objects.get(name=request.POST.get('usertype', None))
@@ -222,7 +222,8 @@ class UserViewset(viewsets.ModelViewSet):
 
         login_user = authenticate(request, username=username, password=password)
         if login_user is not None:
-            return JsonResponse({'exit': 0, 'message': 'Welcome', 'role': login_user.groups.all()[0].name,
+            return JsonResponse({'exit': 0, 'message': 'Welcome',
+                                 'role': login_user.groups.all()[0].name,
                                  'data': filtered_users()})
         else:
             messages.error(request, 'Error: invalid username or password')
