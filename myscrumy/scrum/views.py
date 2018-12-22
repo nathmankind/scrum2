@@ -178,6 +178,7 @@ class ScrumUserViewset(viewsets.ModelViewSet):
         else:
             return JsonResponse({'message': 'Error: Username already exist'})
 
+
 def filtered_users():
     users = ScrumUserSerializer(ScrumUser.objects.all(), many=True).data
 
@@ -211,20 +212,108 @@ class ScrumGoalViewset(viewsets.ModelViewSet):
             return JsonResponse({'exit': 1,
                                  'message': 'Not logged in! Please login first'})
 
+    def patch(self, request):
+        user = authenticate(request, username=request.data['username'],
+                            password=request.data['password'])
+        if user is not None:
+            goal_id = request.data['goal_id']
+            to_id = request.data['to_id']
 
-class UserViewset(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+            if to_id == 4:
+                if user.groups.all()[0].name == 'Developer':
+                    if user != ScrumGoal.objects.get(id=goal_id).user.user:
+                        return JsonResponse({'exit': 0,
+                                             'message': 'Permission Denied: Unauthorized Deletion of Goal',
+                                             'data': filtered_users()})
+                del_goal = ScrumGoal.objects.get(id=goal_id)
+                del_goal.visible = False
+                del_goal.save()
+                return JsonResponse({'exit': 0,
+                                     'message': 'Goal Removed Successfully',
+                                     'data': filtered_users()})
+            else:
+                goal_item = ScrumGoal.objects.get(id=goal_id)
+                group = user.groups.all()[0].name
+                from_allowed = []
+                to_allowed = []
 
-    def create(self, request):
-        username = request.data['username']
-        password = request.data['password']
+                if group == 'Developer':
+                    if user != goal_item.user.user:
+                        return JsonResponse({'exit': 0,
+                                             'message': 'Permission Denied: Unauthorized Deletion of Goal',
+                                             'data': filtered_users()})
+                if group == 'Owner':
+                    from_allowed = [0, 1, 2, 3]
+                    to_allowed = [0, 1, 2, 3]
+                elif group == 'Admin':
+                    from_allowed = [1, 2]
+                    to_allowed = [1, 2]
+                elif group == 'Developer':
+                    from_allowed = [0, 1]
+                    to_allowed = [0, 1]
+                elif group == 'Quality Analyst':
+                    from_allowed = [2, 3]
+                    to_allowed = [2, 3]
 
-        login_user = authenticate(request, username=username, password=password)
-        if login_user is not None:
-            return JsonResponse({'exit': 0, 'message': 'Welcome',
-                                 'role': login_user.groups.all()[0].name,
+                if (goal_item.status in from_allowed) and (to_id in to_allowed):
+                    goal_item.status = to_id
+                elif group == 'Quality Analyst' and goal_item.status == 2 and to_id == 0:
+                    goal_item.status = to_id
+                else:
+                    return JsonResponse({'exit': 0,
+                                         'message': 'Permission Denied: Unauthorized Movement of Goal',
+                                         'data': filtered_users()})
+                goal_item.save()
+                return JsonResponse({'exit': 0,
+                                     'message': 'Goal moved successfully',
+                                     'data': filtered_users()})
+
+        else:
+            return JsonResponse({'exit': 1, 'message': 'Not logged in. Please login first'})
+
+    def put(self, request):
+        user = authenticate(request, username=request.data['username'],
+                            password=request.data['password'])
+        if user is not None:
+            from_id = request.data['from_id']
+            to_id = request.data['to_id']
+            if user.groups.all()[0].name == 'Developer' or user.groups.all()[0].name == 'Quality Analyst':
+                return JsonResponse({'exit': 0,
+                                     'message': 'Permission Denied: Unauthorised re-assignment of goal',
+                                     'data': filtered_users()})
+            goal = ScrumGoal.objects.get(id=from_id)
+            author = ScrumGoal.objects.get(id=to_id).user
+            goal.user = author
+            goal.save()
+            return JsonResponse({'exit': 0,
+                                 'message': 'Goal reassigned successfully',
                                  'data': filtered_users()})
         else:
-            messages.error(request, 'Error: invalid username or password')
-            return HttpResponseRedirect(reverse('login'))
+            return JsonResponse({'exit': 1,
+                                 'message': 'Not logged in! Please login first'})
+
+
+# class UserViewset(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#
+#     def create(self, request):
+#         username = request.data['username']
+#         password = request.data['password']
+#
+#         login_user = authenticate(request, username=username, password=password)
+#         if login_user is not None:
+#             return JsonResponse({'exit': 0, 'message': 'Welcome',
+#                                  'role': login_user.groups.all()[0].name,
+#                                  'data': filtered_users()})
+#         else:
+#             return JsonResponse({'exit': 1, 'message': 'Error: Invalid Credentials'})
+
+
+def jwt_response_payload_handler(token, user=None, request=None):
+    return {
+        'token': token,
+        'message': 'Welcome',
+        'role': user.groups.all()[0].name,
+        'data': filtered_users()
+    }

@@ -46,6 +46,19 @@ CORS_ORIGIN_WHITELIST = [
     'localhost:4200',
     '127.0.0.1:4200'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
+JWT_AUTH = {
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'scrum.views.jwt_response_payload_handler'
+}
+
 ROOT_URLCONF = 'myscrumy.urls'
 
 TEMPLATES = [
