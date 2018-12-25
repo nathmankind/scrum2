@@ -7,6 +7,7 @@ from django.contrib import messages
 from .models import *
 from .serializers import *
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 
 # Create your views here.
@@ -191,106 +192,95 @@ def filtered_users():
 class ScrumGoalViewset(viewsets.ModelViewSet):
     queryset = ScrumGoal.objects.all()
     serializer_class = ScrumGoalSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def create(self, request):
-        user = authenticate(request, username=request.data['username'],
-                            password=request.data['password'])
-        if user is not None:
-            name_goal = request.data['name']
-            group_name = user.groups.all()[0].name
-            status_start = 0
-            if group_name == 'Admin':
-                status_start = 1
-            elif group_name == 'Quality Analyst':
-                status_start = 2
-            goal = ScrumGoal(user=user.scrumuser, name=name_goal, status=status_start)
-            goal.save()
-            return JsonResponse({'exit': 0,
-                                 'message': 'Goal Added successfully',
-                                 'data': filtered_users()})
-        else:
-            return JsonResponse({'exit': 1,
-                                 'message': 'Not logged in! Please login first'})
+        name_goal = request.data['name']
+        group_name = request.user.groups.all()[0].name
+        status_start = 0
+        if group_name == 'Admin':
+            status_start = 1
+        elif group_name == 'Quality Analyst':
+            status_start = 2
+        goal = ScrumGoal(user=request.user.scrumuser, name=name_goal, status=status_start)
+        goal.save()
+        return JsonResponse({'message': 'Goal Added successfully',
+                             'data': filtered_users()})
 
     def patch(self, request):
-        user = authenticate(request, username=request.data['username'],
-                            password=request.data['password'])
-        if user is not None:
-            goal_id = request.data['goal_id']
-            to_id = request.data['to_id']
+        goal_id = request.data['goal_id']
+        to_id = request.data['to_id']
 
-            if to_id == 4:
-                if user.groups.all()[0].name == 'Developer':
-                    if user != ScrumGoal.objects.get(id=goal_id).user.user:
-                        return JsonResponse({'exit': 0,
-                                             'message': 'Permission Denied: Unauthorized Deletion of Goal',
-                                             'data': filtered_users()})
-                del_goal = ScrumGoal.objects.get(id=goal_id)
-                del_goal.visible = False
-                del_goal.save()
-                return JsonResponse({'exit': 0,
-                                     'message': 'Goal Removed Successfully',
-                                     'data': filtered_users()})
-            else:
-                goal_item = ScrumGoal.objects.get(id=goal_id)
-                group = user.groups.all()[0].name
-                from_allowed = []
-                to_allowed = []
-
-                if group == 'Developer':
-                    if user != goal_item.user.user:
-                        return JsonResponse({'exit': 0,
-                                             'message': 'Permission Denied: Unauthorized Deletion of Goal',
-                                             'data': filtered_users()})
-                if group == 'Owner':
-                    from_allowed = [0, 1, 2, 3]
-                    to_allowed = [0, 1, 2, 3]
-                elif group == 'Admin':
-                    from_allowed = [1, 2]
-                    to_allowed = [1, 2]
-                elif group == 'Developer':
-                    from_allowed = [0, 1]
-                    to_allowed = [0, 1]
-                elif group == 'Quality Analyst':
-                    from_allowed = [2, 3]
-                    to_allowed = [2, 3]
-
-                if (goal_item.status in from_allowed) and (to_id in to_allowed):
-                    goal_item.status = to_id
-                elif group == 'Quality Analyst' and goal_item.status == 2 and to_id == 0:
-                    goal_item.status = to_id
-                else:
-                    return JsonResponse({'exit': 0,
-                                         'message': 'Permission Denied: Unauthorized Movement of Goal',
+        if to_id == 4:
+            if request.user.groups.all()[0].name == 'Developer':
+                if request.user != ScrumGoal.objects.get(id=goal_id).user.user:
+                    return JsonResponse({'message': 'Permission Denied: Unauthorized Deletion of Goal',
                                          'data': filtered_users()})
-                goal_item.save()
-                return JsonResponse({'exit': 0,
-                                     'message': 'Goal moved successfully',
-                                     'data': filtered_users()})
-
-        else:
-            return JsonResponse({'exit': 1, 'message': 'Not logged in. Please login first'})
-
-    def put(self, request):
-        user = authenticate(request, username=request.data['username'],
-                            password=request.data['password'])
-        if user is not None:
-            from_id = request.data['from_id']
-            to_id = request.data['to_id']
-            if user.groups.all()[0].name == 'Developer' or user.groups.all()[0].name == 'Quality Analyst':
-                return JsonResponse({'exit': 0,
-                                     'message': 'Permission Denied: Unauthorised re-assignment of goal',
-                                     'data': filtered_users()})
-            goal = ScrumGoal.objects.get(id=from_id)
-            author = ScrumGoal.objects.get(id=to_id).user
-            goal.user = author
-            goal.save()
-            return JsonResponse({'exit': 0,
-                                 'message': 'Goal reassigned successfully',
+            del_goal = ScrumGoal.objects.get(id=goal_id)
+            del_goal.visible = False
+            del_goal.save()
+            return JsonResponse({'message': 'Goal Removed Successfully',
                                  'data': filtered_users()})
         else:
-            return JsonResponse({'exit': 1,
-                                 'message': 'Not logged in! Please login first'})
+            goal_item = ScrumGoal.objects.get(id=goal_id)
+            group = request.user.groups.all()[0].name
+            from_allowed = []
+            to_allowed = []
+
+            if group == 'Developer':
+                if request.user != goal_item.user.user:
+                    return JsonResponse({'message': 'Permission Denied: Unauthorized Deletion of Goal',
+                                         'data': filtered_users()})
+            if group == 'Owner':
+                from_allowed = [0, 1, 2, 3]
+                to_allowed = [0, 1, 2, 3]
+            elif group == 'Admin':
+                from_allowed = [1, 2]
+                to_allowed = [1, 2]
+            elif group == 'Developer':
+                from_allowed = [0, 1]
+                to_allowed = [0, 1]
+            elif group == 'Quality Analyst':
+                from_allowed = [2, 3]
+                to_allowed = [2, 3]
+
+            if (goal_item.status in from_allowed) and (to_id in to_allowed):
+                goal_item.status = to_id
+            elif group == 'Quality Analyst' and goal_item.status == 2 and to_id == 0:
+                goal_item.status = to_id
+            else:
+                return JsonResponse({'message': 'Permission Denied: Unauthorized Movement of Goal',
+                                     'data': filtered_users()})
+            goal_item.save()
+            return JsonResponse({'message': 'Goal moved successfully',
+                                 'data': filtered_users()})
+
+    def put(self, request):
+        # user = authenticate(request, username=request.data['username'],
+        #                     password=request.data['password'])
+        if request.data['mode'] == 0:
+            from_id = request.data['from_id']
+            to_id = request.data['to_id']
+            if request.user.groups.all()[0].name == 'Developer' or request.user.groups.all()[0].name == 'Quality Analyst':
+                return JsonResponse({'message': 'Permission Denied: Unauthorised re-assignment of goal',
+                                     'data': filtered_users()})
+            goal = ScrumGoal.objects.get(id=from_id)
+            author = None
+            if to_id[0] == 'u':
+                author = ScrumUser.objects.get(id=to_id[1:])
+            else:
+                author = ScrumGoal.objects.get(id=to_id).user
+            goal.user = author
+            goal.save()
+            return JsonResponse({'message': 'Goal reassigned successfully', 'data': filtered_users()})
+        else:
+            goal = ScrumGoal.objects.get(id=request.data['goal_id'])
+            if request.user.groups.all()[0].name != 'Owner' and request.user != goal.user.user:
+                return JsonResponse({'message': 'Permission Denied: Unauthorised Name change of goal',
+                                     'data': filtered_users()})
+            goal.name = request.data['new_name']
+            goal.save()
+            return JsonResponse({'message': 'Goal Name Changed', 'data': filtered_users()})
 
 
 # class UserViewset(viewsets.ModelViewSet):
@@ -313,7 +303,5 @@ class ScrumGoalViewset(viewsets.ModelViewSet):
 def jwt_response_payload_handler(token, user=None, request=None):
     return {
         'token': token,
-        'message': 'Welcome',
-        'role': user.groups.all()[0].name,
-        'data': filtered_users()
+        'role': user.groups.all()[0].name
     }
